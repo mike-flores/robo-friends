@@ -17,7 +17,7 @@ class App extends React.Component {
    render() {
       if (!this.state.robots.length) {
          return (
-            <div className='tc'>
+            <div className="tc">
                <h1 className="header f1">RoboFriends</h1>
                <h1>Loading...</h1>
             </div>
@@ -30,7 +30,6 @@ class App extends React.Component {
                <Scroll>
                   <CardList robots={this.state.filteredRobots} />
                </Scroll>
-               
             </div>
          );
       }
@@ -38,7 +37,9 @@ class App extends React.Component {
    componentDidMount() {
       fetch('https://jsonplaceholder.typicode.com/users')
          .then(response => response.json())
-         .then(users => this.setState({ robots: users, filteredRobots: users }));
+         .then(users =>
+            this.setState({ robots: users, filteredRobots: users })
+         );
    }
 
    handleSearchChange = event => {
@@ -49,7 +50,9 @@ class App extends React.Component {
 
    filterRobots = () => {
       let filteredRobots = this.state.robots.filter(robot => {
-         return robot.name.toLowerCase().includes(this.state.searchString.toLowerCase());
+         return robot.name
+            .toLowerCase()
+            .includes(this.state.searchString.toLowerCase());
       });
       this.setState({ filteredRobots: filteredRobots });
    };
